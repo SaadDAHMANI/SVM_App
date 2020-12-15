@@ -2,7 +2,12 @@
 // Required packages :
 // dotnet add package Accord.MachineLearning --version 3.8.2-alpha
 // dotnet add package Accord.MachineLearning.GPL --version 3.8.2-alpha
+// 
+// For genetic algorithm:
+// dotnet add package Accord.Genetic --version 3.8.0 
 //----------------------------------------------------------------------
+// Written by : Saad Dahmani (s.dahmani@univ-bouira.dz)
+//**********************************************************************
 
 using System;
 using System.Data;
@@ -44,6 +49,7 @@ namespace SVR_App2
 
             // Try SVR :
             Test_EOSVR();   
+       
        
             
            

@@ -14,6 +14,19 @@
           "build/Accord.targets": {}
         }
       },
+      "Accord.Genetic/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Math": "3.8.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Accord.Genetic.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Accord.Genetic.dll": {}
+        }
+      },
       "Accord.MachineLearning/3.8.2-alpha": {
         "type": "package",
         "dependencies": {
@@ -116,6 +129,39 @@
         "lib/netstandard1.4/Accord.xml",
         "lib/netstandard2.0/Accord.dll",
         "lib/netstandard2.0/Accord.xml"
+      ]
+    },
+    "Accord.Genetic/3.8.0": {
+      "sha512": "dR8HfxjsZwMAgIEADbiNps7dVfcLY4fgReYyQ5r4JCANqtxD+swxvvgtjm01KgiOK9TbFxgQAdswMK87gF9coQ==",
+      "type": "package",
+      "path": "accord.genetic/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "accord.genetic.3.8.0.nupkg.sha512",
+        "accord.genetic.nuspec",
+        "lib/net35-unity full v3.5/Accord.Genetic.dll",
+        "lib/net35-unity full v3.5/Accord.Genetic.xml",
+        "lib/net35-unity micro v3.5/Accord.Genetic.dll",
+        "lib/net35-unity micro v3.5/Accord.Genetic.xml",
+        "lib/net35-unity subset v3.5/Accord.Genetic.dll",
+        "lib/net35-unity subset v3.5/Accord.Genetic.xml",
+        "lib/net35-unity web v3.5/Accord.Genetic.dll",
+        "lib/net35-unity web v3.5/Accord.Genetic.xml",
+        "lib/net35/Accord.Genetic.dll",
+        "lib/net35/Accord.Genetic.xml",
+        "lib/net40/Accord.Genetic.dll",
+        "lib/net40/Accord.Genetic.xml",
+        "lib/net45/Accord.Genetic.dll",
+        "lib/net45/Accord.Genetic.xml",
+        "lib/net46/Accord.Genetic.dll",
+        "lib/net46/Accord.Genetic.xml",
+        "lib/net462/Accord.Genetic.dll",
+        "lib/net462/Accord.Genetic.xml",
+        "lib/netstandard1.4/Accord.Genetic.dll",
+        "lib/netstandard1.4/Accord.Genetic.xml",
+        "lib/netstandard2.0/Accord.Genetic.dll",
+        "lib/netstandard2.0/Accord.Genetic.xml"
       ]
     },
     "Accord.MachineLearning/3.8.2-alpha": {
@@ -280,6 +326,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Accord.Genetic >= 3.8.0",
       "Accord.MachineLearning >= 3.8.2-alpha",
       "Accord.MachineLearning.GPL >= 3.8.2-alpha",
       "IOOperations >= 1.0.0"
@@ -328,6 +375,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Accord.Genetic": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
           "Accord.MachineLearning": {
             "target": "Package",
             "version": "[3.8.2-alpha, )"

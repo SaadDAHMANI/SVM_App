@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "SVR_App2/1.0.0": {
         "dependencies": {
+          "Accord.Genetic": "3.8.0",
           "Accord.MachineLearning": "3.8.2-alpha",
           "Accord.MachineLearning.GPL": "3.8.2-alpha",
           "IOOperations": "1.0.0"
@@ -21,6 +22,18 @@
           "lib/netstandard2.0/Accord.dll": {
             "assemblyVersion": "3.8.2.0",
             "fileVersion": "3.8.2.6153"
+          }
+        }
+      },
+      "Accord.Genetic/3.8.0": {
+        "dependencies": {
+          "Accord": "3.8.2-alpha",
+          "Accord.Math": "3.8.2-alpha"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Accord.Genetic.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.6134"
           }
         }
       },
@@ -97,6 +110,13 @@
       "sha512": "sha512-g/EKYGdeMKTMJt7XtB65f+RyVW5ALfU1f1T1dpIGXOqzBtaaNK+OGB6pFY9RFrjKPQNUlnKUWF2jwH5knM+X7A==",
       "path": "accord/3.8.2-alpha",
       "hashPath": "accord.3.8.2-alpha.nupkg.sha512"
+    },
+    "Accord.Genetic/3.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dR8HfxjsZwMAgIEADbiNps7dVfcLY4fgReYyQ5r4JCANqtxD+swxvvgtjm01KgiOK9TbFxgQAdswMK87gF9coQ==",
+      "path": "accord.genetic/3.8.0",
+      "hashPath": "accord.genetic.3.8.0.nupkg.sha512"
     },
     "Accord.MachineLearning/3.8.2-alpha": {
       "type": "package",
