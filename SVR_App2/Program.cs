@@ -50,9 +50,9 @@ namespace SVR_App2
             // Try SVR :
             Test_EOSVR();   
        
+       Accord.Genetic.Population ga = new Accord.Genetic.Population(40);                        
        
-            
-           
+                       
 
         }
 
