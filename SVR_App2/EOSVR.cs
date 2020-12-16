@@ -162,7 +162,8 @@ public class EOSVR
 
 
 double LearningIndex, TestingIndex;
-
+public double BestLearningScore=double.MinValue;
+public double BestTestingScore=double.MinValue; 
      
     public void Optimizer_ObjectiveFunction(double[] solution, ref double fitnessValue)
      {
@@ -199,7 +200,8 @@ double LearningIndex, TestingIndex;
             TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(DataSerie1D.Convert(TestingOutputs), DataSerie1D.Convert(_Computed_TestingOutputs));
             
             Console.WriteLine("indexL= {0} | indexT= {1}", LearningIndex, TestingIndex);
-
+if (BestLearningScore<LearningIndex){BestLearningScore=LearningIndex;}
+if (BestTestingScore < TestingIndex){BestTestingScore=TestingIndex;}
             //set the fitness value
             fitnessValue=1/(LearningIndex+TestingIndex);   
  

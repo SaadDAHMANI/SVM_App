@@ -105,7 +105,7 @@ namespace SVR_App2
 
         }
 
-    
+
 
     static void LoadData()
     {
@@ -196,6 +196,7 @@ namespace SVR_App2
 
         eo_SVR.LearnEO();
         Console.WriteLine("Best index (R2)= {0}", eo_SVR.BestScore);
+        Console.WriteLine("Best learning index= {0} | Best testing index = {1}", eo_SVR.BestLearningScore, eo_SVR.BestTestingScore);
 
     }
 
