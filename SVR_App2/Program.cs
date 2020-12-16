@@ -191,6 +191,11 @@ namespace SVR_App2
         Statistics statT = new Statistics(TestingOut, eo_SVR.Computed_TestingOutputs);
         Console.WriteLine("Testing indexes : {0}", statT.ToString(4));
 
+        Console.WriteLine("________________________________________________________");
+
+        eo_SVR.LearnEO();
+        Console.WriteLine("Best index (R2)= {0}", eo_SVR.BestScore);
+
     }
 
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ using Accord.MachineLearning.VectorMachines.Learning;
 using Accord.Math;
 using Accord.Statistics.Kernels;
 using IOOperations;
-
+using MonoObjectiveEOALib;
 namespace SupportVectorRegression
 {
 
@@ -72,7 +73,7 @@ public class EOSVR
         set{sigmaKernel=value;}
      } 
 
-     private void InitilizeKernel()
+     private  void InitilizeKernel()
      {
          // Create the specified Kernel
          switch(UseKernel)
@@ -126,16 +127,81 @@ public class EOSVR
             // Compute statistical params
      }    
 
+        public double BestScore= double.NaN; 
+        EvolutionaryAlgoBase Optimizer;
         public void LearnEO()
         {
-            
 
-            
+         if (Equals(LearningInputs, null)){return;}
+         if (Equals(LearningOutputs, null)){return;}
+
+         //Set kernal params :
+         UseKernel= KernelEnum.Gaussian;   
+
+         // 
+             
+
+        int N=30;
+        int D=4;
+        int kmax =10;
+
+        List<Interval> intervals = new List<Interval>();
+        intervals.Add(new Interval(0.01, 5));
+        intervals.Add(new Interval(0.1, 25));
+        intervals.Add(new Interval(0.0001, 0.1));        
+        intervals.Add(new Interval(0.0001, 0.1));
+
+        Optimizer= new PSOGSA_Optimizer(N,D,intervals,kmax);
+        Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
+
+        Optimizer.LuanchComputation();        
+   
+        BestScore=Optimizer.BestScore;    
+           
         }
 
-    
-    }
 
+double LearningIndex, TestingIndex;
+     
+    public void Optimizer_ObjectiveFunction(double[] solution, ref double fitnessValue)
+     {
+
+         //Set kernal params :
+        kernel = new Accord.Statistics.Kernels.Gaussian(solution[0]);
+                     
+         // Creates a new SMO for regression learning algorithm
+         var teacher = new SequentialMinimalOptimizationRegression()
+         {
+             // Set learning parameters
+             Complexity = solution[1], //Param_Complexity,
+             Tolerance = solution[2], //Param_Tolerance,
+             Epsilon = solution[3], //Param_Epsilon,
+             Kernel = kernel
+         };
+
+         // Use the teacher to create a machine
+             svm = teacher.Learn(LearningInputs, LearningOutputs);
+
+            // Check if we got support vectors
+            if (svm.SupportVectors.Length == 0)
+            {
+                Console.WriteLine("Sorry, No SVMs.");
+                return;
+            }
+
+            // Compute results for learning and testing data
+            _Computed_LearningOutputs =svm.Score(LearningInputs);
+            _Computed_TestingOutputs=svm.Score(TestingInputs);
+
+            // Compute statistical 
+            LearningIndex = Statistics.Compute_DeterminationCoeff_R2(DataSerie1D.Convert(LearningOutputs),DataSerie1D.Convert(_Computed_LearningOutputs));            
+            TestingIndex =Statistics.Compute_DeterminationCoeff_R2(DataSerie1D.Convert(TestingOutputs), DataSerie1D.Convert(_Computed_TestingOutputs));
+            
+            //set the fitness value
+            fitnessValue=LearningIndex+TestingIndex;   
+ 
+     }
+}
     public enum KernelEnum
     {
         Gaussian,

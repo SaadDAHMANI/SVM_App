@@ -73,3 +73,5 @@ F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.genruntimeconfig.cache
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.pdb
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Genetic.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.pdb

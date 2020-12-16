@@ -92,6 +92,16 @@
         "runtime": {
           "bin/placeholder/IOOperations.dll": {}
         }
+      },
+      "MonoObjectiveEOALib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/MonoObjectiveEOALib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MonoObjectiveEOALib.dll": {}
+        }
       }
     }
   },
@@ -322,6 +332,11 @@
       "type": "project",
       "path": "../IOOperations/IOOperations.csproj",
       "msbuildProject": "../IOOperations/IOOperations.csproj"
+    },
+    "MonoObjectiveEOALib/1.0.0": {
+      "type": "project",
+      "path": "../MonoObjectiveEOALib/MonoObjectiveEOALib.vbproj",
+      "msbuildProject": "../MonoObjectiveEOALib/MonoObjectiveEOALib.vbproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -329,7 +344,8 @@
       "Accord.Genetic >= 3.8.0",
       "Accord.MachineLearning >= 3.8.2-alpha",
       "Accord.MachineLearning.GPL >= 3.8.2-alpha",
-      "IOOperations >= 1.0.0"
+      "IOOperations >= 1.0.0",
+      "MonoObjectiveEOALib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -361,6 +377,9 @@
           "projectReferences": {
             "F:\\VS19_Apps\\SVM_App\\IOOperations\\IOOperations.csproj": {
               "projectPath": "F:\\VS19_Apps\\SVM_App\\IOOperations\\IOOperations.csproj"
+            },
+            "F:\\VS19_Apps\\SVM_App\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj": {
+              "projectPath": "F:\\VS19_Apps\\SVM_App\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj"
             }
           }
         }

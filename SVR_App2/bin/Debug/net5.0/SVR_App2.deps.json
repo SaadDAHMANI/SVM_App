@@ -11,7 +11,8 @@
           "Accord.Genetic": "3.8.0",
           "Accord.MachineLearning": "3.8.2-alpha",
           "Accord.MachineLearning.GPL": "3.8.2-alpha",
-          "IOOperations": "1.0.0"
+          "IOOperations": "1.0.0",
+          "MonoObjectiveEOALib": "1.0.0"
         },
         "runtime": {
           "SVR_App2.dll": {}
@@ -95,6 +96,11 @@
         "runtime": {
           "IOOperations.dll": {}
         }
+      },
+      "MonoObjectiveEOALib/1.0.0": {
+        "runtime": {
+          "MonoObjectiveEOALib.dll": {}
+        }
       }
     }
   },
@@ -147,6 +153,11 @@
       "hashPath": "accord.statistics.3.8.2-alpha.nupkg.sha512"
     },
     "IOOperations/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MonoObjectiveEOALib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

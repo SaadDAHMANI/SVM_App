@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\VS19_Apps\\EOAlgos_Github\\EOAlgos\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj",
+      "projectUniqueName": "F:\\VS19_Apps\\SVM_App\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj",
       "projectName": "MonoObjectiveEOALib",
-      "projectPath": "F:\\VS19_Apps\\EOAlgos_Github\\EOAlgos\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj",
+      "projectPath": "F:\\VS19_Apps\\SVM_App\\MonoObjectiveEOALib\\MonoObjectiveEOALib.vbproj",
       "packagesPath": "C:\\Users\\SD\\.nuget\\packages\\",
-      "outputPath": "F:\\VS19_Apps\\EOAlgos_Github\\EOAlgos\\MonoObjectiveEOALib\\obj\\",
+      "outputPath": "F:\\VS19_Apps\\SVM_App\\MonoObjectiveEOALib\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SD\\AppData\\Roaming\\NuGet\\NuGet.Config",
