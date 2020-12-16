@@ -126,9 +126,11 @@ public class EOSVR
             // Compute statistical params
      }    
 
-        public void ComputeStatisticalParams()
+        public void LearnEO()
         {
-            throw new NotImplementedException();
+            
+
+            
         }
 
     

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IOOperations\IOOperations.csproj" />
+    <ProjectReference Include="..\MonoObjectiveEOALib\MonoObjectiveEOALib.vbproj" />
   </ItemGroup>
 
 </Project>

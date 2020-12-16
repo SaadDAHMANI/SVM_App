@@ -36,7 +36,7 @@ namespace SVR_App2
          static double[][] TestingIn;
          static double[] TestingOut;   
 
-         static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Hello SVR!");
 
@@ -49,10 +49,7 @@ namespace SVR_App2
 
             // Try SVR :
             Test_EOSVR();   
-       
-       Accord.Genetic.Population ga = new Accord.Genetic.Population(40);                        
-       
-                       
+            
 
         }
 
@@ -170,7 +167,6 @@ namespace SVR_App2
          Console.WriteLine("There is {0} records in TESTING outputs.", TestingOut.Length);   
       }
 
-
     static void Test_EOSVR()
     {
         // initilize svr :
@@ -196,6 +192,13 @@ namespace SVR_App2
         Console.WriteLine("Testing indexes : {0}", statT.ToString(4));
 
     }
+
+
+    static void LuanchGA()
+    {
+      
+    }
+
 
     }
 }
