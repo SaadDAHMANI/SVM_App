@@ -162,6 +162,7 @@ public class EOSVR
 
 
 double LearningIndex, TestingIndex;
+
      
     public void Optimizer_ObjectiveFunction(double[] solution, ref double fitnessValue)
      {
@@ -198,7 +199,7 @@ double LearningIndex, TestingIndex;
             TestingIndex =Statistics.Compute_DeterminationCoeff_R2(DataSerie1D.Convert(TestingOutputs), DataSerie1D.Convert(_Computed_TestingOutputs));
             
             //set the fitness value
-            fitnessValue=LearningIndex+TestingIndex;   
+            fitnessValue=1/(LearningIndex+TestingIndex);   
  
      }
 }
