@@ -104,6 +104,7 @@ namespace SVR_App2
             Console.WriteLine(supportVectorsWeights.Length);
 
         }
+
     
 
     static void LoadData()
