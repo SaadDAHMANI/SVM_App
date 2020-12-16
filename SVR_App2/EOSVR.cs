@@ -141,9 +141,9 @@ public class EOSVR
          // 
              
 
-        int N=30;
+        int N=10;
         int D=4;
-        int kmax =10;
+        int kmax =15;
 
         List<Interval> intervals = new List<Interval>();
         intervals.Add(new Interval(0.01, 5));
