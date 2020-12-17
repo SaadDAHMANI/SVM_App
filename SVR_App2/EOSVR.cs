@@ -200,12 +200,12 @@ public double BestTestingScore=double.MinValue;
             _Computed_TestingOutputs=svm.Score(TestingInputs);
 
             // Compute statistical 
-            LearningIndex = Statistics.Compute_Nash_Sutcliffe_Efficiency(DataSerie1D.Convert(LearningOutputs),DataSerie1D.Convert(_Computed_LearningOutputs));            
-            TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(DataSerie1D.Convert(TestingOutputs), DataSerie1D.Convert(_Computed_TestingOutputs));
+            LearningIndex = Statistics.Compute_Nash_Sutcliffe_Efficiency(LearningOutputs,_Computed_LearningOutputs);            
+            TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(TestingOutputs, _Computed_TestingOutputs);
             
             Console.WriteLine("indexL= {0} | indexT= {1}", LearningIndex, TestingIndex);
-if (BestLearningScore<LearningIndex){BestLearningScore=LearningIndex;}
-if (BestTestingScore < TestingIndex){BestTestingScore=TestingIndex;}
+            if (BestLearningScore<LearningIndex){BestLearningScore=LearningIndex;}
+            if (BestTestingScore < TestingIndex){BestTestingScore=TestingIndex;}
             //set the fitness value
             fitnessValue=1/(LearningIndex+TestingIndex);   
  

@@ -206,10 +206,38 @@ namespace SupportVectorRegression
                 rmse = sum / N;
                 rmse = Math.Sqrt(rmse);
             }
-            catch(Exception ex) { rmse = double.NaN; throw ex; }
+            catch(Exception ex) { rmse = double.NaN;}
             return rmse;
         }
 
+/// <summary>
+        /// Computation of Root Mean Square Error (RMSE) of Two data series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>RMSE Value</returns>
+        public static double  Compute_RMSE(double[] O_Serie, double[] P_Serie)
+        {
+            double rmse = double .NaN;
+            if (CheckDataSeries(O_Serie, P_Serie) == false) { return rmse; }
+            try
+            {
+                double sum = 0;
+                int N = O_Serie.Length;
+                for (int i = 0; i < N; i++)
+                {
+                    sum += Math.Pow((O_Serie[i] - P_Serie[i]), 2);
+                }
+                rmse = sum / N;
+                rmse = Math.Sqrt(rmse);
+            }
+            catch(Exception ex) { rmse = double.NaN; throw ex;}
+            return rmse;
+        }
+
+  
+       
+       
         /// <summary>
         /// Computation of Mean Absolute Error (MAE) of Two data series.
         /// </summary>
@@ -227,6 +255,32 @@ namespace SupportVectorRegression
                 for (int i = 0; i < N; i++)
                 {
                     sum += Math.Abs((O_Serie.Data[i].X_Value - P_Serie.Data[i].X_Value));
+                }
+                mae = sum / N;
+             }
+
+            catch (Exception ex) {mae = double.NaN;  throw ex; }
+            return mae;
+        }
+
+        
+        /// <summary>
+        /// Computation of Mean Absolute Error (MAE) of Two data series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>MAE Value</returns>
+        public static double Compute_MAE(double[] O_Serie, double[] P_Serie)
+        {
+            double mae = double.NaN;
+            if (CheckDataSeries(O_Serie, P_Serie) == false) { return mae; }
+            try
+            {
+                double sum = 0;
+                int N = Math.Min(O_Serie.Length, P_Serie.Length);
+                for (int i = 0; i < N; i++)
+                {
+                    sum += Math.Abs(O_Serie[i] - P_Serie[i]);
                 }
                 mae = sum / N;
              }
@@ -275,9 +329,55 @@ namespace SupportVectorRegression
                 }
                 }
 
-            catch (Exception ex) { rValue  = double.NaN; throw ex; }
+            catch (Exception ex) { rValue  = double.NaN;}
             return rValue ;
         }
+
+            
+        /// <summary>
+        /// Computation of Correlation Coefficient (R) of Two Series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>R Value</returns>
+        public static double Compute_CorrelationCoeff_R(double[] O_Serie, double[] P_Serie)
+        {
+            double rValue = double.NaN;
+            if (CheckDataSeries(O_Serie, P_Serie) == false) { return rValue ; }
+            try
+            {
+                double sum1 = 0;
+                double sum2 = 0;
+                double sum3 = 0;
+
+                int N = Math.Min(O_Serie.Length, P_Serie.Length);
+                double oMean = O_Serie.Average();
+                double pMean = P_Serie.Average();
+
+                for (int i = 0; i < N; i++)
+                {
+                    sum1 += ((O_Serie[i] - oMean )*(P_Serie[i] -pMean));
+                    sum2 += Math.Pow((O_Serie[i] - oMean), 2);
+                    sum3 += Math.Pow((P_Serie[i] - pMean), 2);
+                }
+                if (sum2==0 || sum3==0)
+                {
+                    if (sum1>=0)
+                    { return double.PositiveInfinity; }
+                    else
+                    { return double.NegativeInfinity; }
+
+                }
+                else
+                {
+                    rValue = sum1 / (Math.Sqrt((sum2 * sum3)));
+                }
+                }
+
+            catch (Exception ex) { rValue  = double.NaN;}
+            return rValue ;
+        }
+
 
         /// <summary>
         /// Computation of Determination Coefficient (R2=R^2) of Two Series.
@@ -286,6 +386,24 @@ namespace SupportVectorRegression
         /// <param name="P_Serie">Predicted data series</param>
         /// <returns>R2 Value</returns>
         public static double Compute_DeterminationCoeff_R2(DataSerie1D O_Serie, DataSerie1D P_Serie)
+        {
+            double rValue = Compute_CorrelationCoeff_R(O_Serie, P_Serie);
+            if(rValue ==double.NaN ) { return double.NaN; }
+            else if (Object.Equals(rValue,double.PositiveInfinity) || object.Equals(rValue,double.NegativeInfinity))
+            { return double.PositiveInfinity; }
+            else
+            {
+              return Math.Pow(rValue, 2); 
+            }
+        }
+
+        /// <summary>
+        /// Computation of Determination Coefficient (R2=R^2) of Two Series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>R2 Value</returns>
+        public static double Compute_DeterminationCoeff_R2(double[] O_Serie, double[] P_Serie)
         {
             double rValue = Compute_CorrelationCoeff_R(O_Serie, P_Serie);
             if(rValue ==double.NaN ) { return double.NaN; }
@@ -333,6 +451,42 @@ namespace SupportVectorRegression
         }
 
         /// <summary>
+        /// Nash Sutcliffe Efficiency "Nash Criterion, Nash and Sutcliffe (1970)" computation of Two series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>Nash criterion Value</returns>
+        public static double Compute_Nash_Sutcliffe_Efficiency(double[] O_Serie, double[] P_Serie)
+        {
+            double nash = double.NaN;
+            if (CheckDataSeries(O_Serie, P_Serie) == false) {return double.NaN ;}
+            try
+            {
+                double sum1 = 0;
+                double sum2 = 0;
+                int N = O_Serie.Length;
+                double oMean = O_Serie.Average();
+                for(int i=0;i<N;i++)
+                {
+                    sum1+=Math.Pow((O_Serie[i]-P_Serie[i]),2);
+                    sum2+= Math.Pow((O_Serie[i] -oMean), 2);
+                }
+                if (sum2 == 0) { return double.NegativeInfinity; }
+                else
+                {
+                    nash = 1 - (sum1 / sum2);
+                }
+            }
+            catch(Exception ex)
+            {
+                nash = double.NaN;
+                throw ex;
+            }
+             return nash;
+        }
+
+
+        /// <summary>
         /// Agreement Index (Willmot Index, Willmot (1981) computation of Two Data Series.
         /// </summary>
         /// <param name="O_Serie">Observed data series</param>
@@ -347,7 +501,7 @@ namespace SupportVectorRegression
             {
                 double sum1 = 0;
                 double sum2 = 0;
-                int N = O_Serie.Count;
+                int N = Math.Min(O_Serie.Count, P_Serie.Count);
                 double oMean = O_Serie.Mean;
                 for (int i = 0; i < N; i++)
                 {
@@ -369,6 +523,45 @@ namespace SupportVectorRegression
 
             return dValue;
         }
+
+        /// <summary>
+        /// Agreement Index (Willmot Index, Willmot (1981) computation of Two Data Series.
+        /// </summary>
+        /// <param name="O_Serie">Observed data series</param>
+        /// <param name="P_Serie">Predicted data series</param>
+        /// <returns>d Value</returns>
+        public static double Compute_Agreement_Index(double[] O_Serie, double[] P_Serie)
+        {
+            double dValue = double.NaN;
+            if (CheckDataSeries(O_Serie, P_Serie) == false) { return double.NaN; }
+
+            try
+            {
+                double sum1 = 0;
+                double sum2 = 0;
+                int N = Math.Min(O_Serie.Length, P_Serie.Length);
+                double oMean = O_Serie.Average();
+                for (int i = 0; i < N; i++)
+                {
+                    sum1 += Math.Pow((O_Serie[i] - P_Serie[i]),2);
+                    sum2 += Math.Pow((Math.Abs((O_Serie[i]-oMean))+Math.Abs((P_Serie[i]-oMean))), 2);
+                }
+                if (sum2==0) { return double.NegativeInfinity; }
+                else
+                {
+                    dValue = 1 - (sum1 / sum2);
+                }
+                
+                }
+            catch (Exception ex)
+            {
+                dValue = double.NaN;
+                throw ex;
+            }
+
+            return dValue;
+        }    
+
       private static bool CheckDataSeries(DataSerie1D O_Serie, DataSerie1D P_Serie)
         {
             bool result = true ;
@@ -379,6 +572,14 @@ namespace SupportVectorRegression
             return result;
         }
 
+ private static bool CheckDataSeries(double[] O_Serie, double[] P_Serie)
+        {
+            bool result = true ;
+            if (object.Equals(O_Serie, null) || O_Serie.Length<1) { return false ; }
+            if (object.Equals(P_Serie, null) || P_Serie.Length<1) { return false ; }
+            if (O_Serie.Length != P_Serie.Length) { return false ; }
+            return result;
+        }
 
         public override string ToString()
         {
