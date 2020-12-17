@@ -30,7 +30,8 @@ public class EOSVR
     TestingInputs=testingIn;
     TestingOutputs=testingOut;
     }
-     IKernel kernel;
+     Gaussian kernelG;
+      IKernel kernel;  
      static SupportVectorMachine<IKernel> svm;
 
      public double[][] LearningInputs {get; set;}
@@ -129,6 +130,8 @@ public class EOSVR
 
         public double BestScore= double.NaN; 
         EvolutionaryAlgoBase Optimizer;
+
+       private SequentialMinimalOptimizationRegression teacherSMOR ;
         public void LearnEO()
         {
 
@@ -136,14 +139,20 @@ public class EOSVR
          if (Equals(LearningOutputs, null)){return;}
 
          //Set kernal params :
-         UseKernel= KernelEnum.Gaussian;   
+         UseKernel= KernelEnum.Gaussian; 
+         if (Equals(kernel, null))
+         { kernelG = new Gaussian(sigmaKernel); }
+         else
+         { kernelG.Sigma=sigmaKernel;}
 
+        teacherSMOR = new SequentialMinimalOptimizationRegression();
+        teacherSMOR.Kernel=kernelG;
+        
          // 
              
-
-        int N=10;
-        int D=4;
-        int kmax =10;
+         int N=10;
+         int D=4;
+         int kmax =10;
 
         List<Interval> intervals = new List<Interval>();
         intervals.Add(new Interval(0.01, 5));
@@ -169,20 +178,15 @@ public double BestTestingScore=double.MinValue;
      {
 
          //Set kernal params :
-        kernel = new Accord.Statistics.Kernels.Gaussian(solution[0]);
+         kernelG.Sigma=solution[0];
                      
-         // Creates a new SMO for regression learning algorithm
-         var teacher = new SequentialMinimalOptimizationRegression()
-         {
-             // Set learning parameters
-             Complexity = solution[1], //Param_Complexity,
-             Tolerance = solution[2], //Param_Tolerance,
-             Epsilon = solution[3], //Param_Epsilon,
-             Kernel = kernel
-         };
-
+         // Set paramsfor regression learning algorithm
+         teacherSMOR.Complexity=solution[1];
+         teacherSMOR.Tolerance=solution[2];
+         teacherSMOR.Epsilon=solution[3];
+        
          // Use the teacher to create a machine
-             svm = teacher.Learn(LearningInputs, LearningOutputs);
+             svm = teacherSMOR.Learn(LearningInputs, LearningOutputs);
 
             // Check if we got support vectors
             if (svm.SupportVectors.Length == 0)
