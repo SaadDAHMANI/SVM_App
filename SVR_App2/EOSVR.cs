@@ -151,15 +151,15 @@ public class EOSVR
          teacherSMOR.UseKernelEstimation=false;
                  // 
             
-         int N=10;
-         int kmax =25;
+         int N=15;
+         int kmax =30;
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
         intervals.Add(new Interval(0.04, 4)); //Sigma of Gaussian
         intervals.Add(new Interval(0.1, 4)); // Complexity
-        intervals.Add(new Interval(0.0001, 0.01)); // Tolerance        
-        intervals.Add(new Interval(0.0001, 0.01)); // Epsilon
+        intervals.Add(new Interval(0.0001, 0.05)); // Tolerance        
+        intervals.Add(new Interval(0.0001, 0.05)); // Epsilon
 
         Optimizer= new PSOGSA_Optimizer(N,D,intervals,kmax);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
