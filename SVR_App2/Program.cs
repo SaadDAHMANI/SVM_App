@@ -41,22 +41,40 @@ namespace SVR_App2
             Console.WriteLine("Hello SVR!");
 
             // Loading Data :
-              fileName_LearningIn ="QLearn.csv";
-              fileName_LearningOut="CLearn.csv";
-              fileName_TestingIn="QTest.csv";
-              fileName_TestingOut="CTest.csv";
-              LoadData();
+             fileName_LearningIn ="QLearn.csv";
+             fileName_LearningOut="CLearn.csv";
+             fileName_TestingIn="QTest.csv";
+             fileName_TestingOut="CTest.csv";
+             LoadData();
+
+             EstimateSigmaAndComplexity();
 
             // Try SVR :
             Test_EOSVR();   
             
 
         }
+        
+        static void EstimateSigmaAndComplexity()
+        {
+            DoubleRange range; // valid range will be returned as an out parameter
+            Gaussian gaussian = Gaussian.Estimate(LearningIn, LearningIn.Length, out range);
 
+             double numSigma = gaussian.Sigma;
+             Console.WriteLine("Estimated Kernel Sigma ={0}", numSigma);
+             Console.WriteLine(range.ToString());                
+
+              // estimate complexity :
+              
+            var kernel = new Gaussian();
+            double cl=kernel.EstimateComplexity(LearningIn);
+            double ct=kernel.EstimateComplexity(TestingIn);
+            Console.WriteLine("Complexity Learni ng ={0}, testing = {1}", cl, ct);
+
+        }
         static void TrySVR(double[][]inputData, double []outputData)
         {
-        
-             
+                     
              // Get only the input vector values (first column)
              double[][] inputs=inputData;
 
@@ -84,6 +102,7 @@ namespace SVR_App2
                  Kernel = kernel
              };
 
+            
              Console.WriteLine("Start SVM learning ...");
              
              // Use the teacher to create a machine

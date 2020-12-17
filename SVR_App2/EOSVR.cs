@@ -145,20 +145,21 @@ public class EOSVR
          else
          { kernelG.Sigma=sigmaKernel;}
 
-        teacherSMOR = new SequentialMinimalOptimizationRegression();
-        teacherSMOR.Kernel=kernelG;
-        
-         // 
-             
+         teacherSMOR = new SequentialMinimalOptimizationRegression();
+         teacherSMOR.Kernel=kernelG;
+         teacherSMOR.UseComplexityHeuristic= true;
+         teacherSMOR.UseKernelEstimation=false;
+                 // 
+            
          int N=10;
-         int D=4;
-         int kmax =10;
-
+         int kmax =25;
+         int D=4;   
+        
         List<Interval> intervals = new List<Interval>();
-        intervals.Add(new Interval(0.01, 5));
-        intervals.Add(new Interval(0.1, 25));
-        intervals.Add(new Interval(0.0001, 0.1));        
-        intervals.Add(new Interval(0.0001, 0.1));
+        intervals.Add(new Interval(0.04, 4)); //Sigma of Gaussian
+        intervals.Add(new Interval(0.1, 4)); // Complexity
+        intervals.Add(new Interval(0.0001, 0.01)); // Tolerance        
+        intervals.Add(new Interval(0.0001, 0.01)); // Epsilon
 
         Optimizer= new PSOGSA_Optimizer(N,D,intervals,kmax);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
@@ -200,12 +201,15 @@ public double BestTestingScore=double.MinValue;
             _Computed_TestingOutputs=svm.Score(TestingInputs);
 
             // Compute statistical 
-            LearningIndex = Statistics.Compute_Nash_Sutcliffe_Efficiency(LearningOutputs,_Computed_LearningOutputs);            
-            TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(TestingOutputs, _Computed_TestingOutputs);
+            LearningIndex = Statistics.Compute_CorrelationCoeff_R(LearningOutputs,_Computed_LearningOutputs);            
+            TestingIndex =Statistics.Compute_CorrelationCoeff_R(TestingOutputs, _Computed_TestingOutputs);
             
             Console.WriteLine("indexL= {0} | indexT= {1}", LearningIndex, TestingIndex);
-            if (BestLearningScore<LearningIndex){BestLearningScore=LearningIndex;}
-            if (BestTestingScore < TestingIndex){BestTestingScore=TestingIndex;}
+            if (BestLearningScore<LearningIndex && BestTestingScore < TestingIndex)
+            {
+             BestLearningScore=LearningIndex;
+             BestTestingScore=TestingIndex;
+             }
             //set the fitness value
             fitnessValue=1/(LearningIndex+TestingIndex);   
  
