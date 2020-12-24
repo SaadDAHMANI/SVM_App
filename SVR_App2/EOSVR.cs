@@ -159,7 +159,7 @@ public class EOSVR
         
          // Optimization prams :            
          int N=3;
-         int kmax =10;
+         int kmax =5;
 
          // Space dimension :q<
          int D=4;   
@@ -187,8 +187,10 @@ public double BestTestingScore=double.MinValue;
     public void Optimizer_ObjectiveFunction(double[] solution, ref double fitnessValue)
      {
 
+         Console.WriteLine(Optimizer.CurrentIteration);
+
          //Set kernal params :
-         kernelG.Sigma=solution[0];
+         kernelG.Sigma=solution[0]  ;
                      
          // Set paramsfor regression learning algorithm
          teacherSMOR.Complexity=solution[1];
