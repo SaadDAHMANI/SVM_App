@@ -158,15 +158,15 @@ public class EOSVR
          teacherSMOR.UseKernelEstimation=false;
         
          // Optimization prams :            
-         int N=5;
-         int kmax =3;
+         int N=3;
+         int kmax =10;
 
          // Space dimension :q<
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
-        intervals.Add(new Interval(0.04, 25)); //Sigma of Gaussian
-        intervals.Add(new Interval(0.1, 20)); // Complexity
+        intervals.Add(new Interval(0.04, 50)); //Sigma of Gaussian
+        intervals.Add(new Interval(0.1, 50)); // Complexity
         intervals.Add(new Interval(0.0001, 0.1)); // Tolerance        
         intervals.Add(new Interval(0.0001, 0.1)); // Epsilon
 
