@@ -41,10 +41,10 @@ namespace SVR_App2
             Console.WriteLine("Hello SVR!");
 
             // Loading Data :
-             fileName_LearningIn ="QLearn.csv";
-             fileName_LearningOut="CLearn.csv";
-             fileName_TestingIn="QTest.csv";
-             fileName_TestingOut="CTest.csv";
+             fileName_LearningIn ="QLearn_2.csv";
+             fileName_LearningOut="CLearn_2.csv";
+             fileName_TestingIn="QTest_2.csv";
+             fileName_TestingOut="CTest_2.csv";
              LoadData();
 
              EstimateSigmaAndComplexity();
