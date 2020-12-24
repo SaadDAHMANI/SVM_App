@@ -165,8 +165,8 @@ public class EOSVR
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
-        intervals.Add(new Interval(0.04, 50)); //Sigma of Gaussian
-        intervals.Add(new Interval(0.1, 50)); // Complexity
+        intervals.Add(new Interval(0.1, 6.70)); //Sigma of Gaussian
+        intervals.Add(new Interval(0.1, 1.5)); // Complexity
         intervals.Add(new Interval(0.0001, 0.1)); // Tolerance        
         intervals.Add(new Interval(0.0001, 0.1)); // Epsilon
 
