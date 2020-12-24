@@ -149,17 +149,19 @@ public class EOSVR
          teacherSMOR.Kernel=kernelG;
          teacherSMOR.UseComplexityHeuristic= true;
          teacherSMOR.UseKernelEstimation=false;
-                 // 
-            
-         int N=15;
+        
+         // Optimization prams :            
+         int N=25;
          int kmax =30;
+
+         // Space dimension :
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
         intervals.Add(new Interval(0.04, 4)); //Sigma of Gaussian
         intervals.Add(new Interval(0.1, 4)); // Complexity
-        intervals.Add(new Interval(0.0001, 0.05)); // Tolerance        
-        intervals.Add(new Interval(0.0001, 0.05)); // Epsilon
+        intervals.Add(new Interval(0.0001, 0.1)); // Tolerance        
+        intervals.Add(new Interval(0.0001, 0.1)); // Epsilon
 
         Optimizer= new PSOGSA_Optimizer(N,D,intervals,kmax);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
