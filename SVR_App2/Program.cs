@@ -216,7 +216,11 @@ namespace SVR_App2
         eo_SVR.LearnEO();
         Console.WriteLine("Best index (R2)= {0}", eo_SVR.BestScore);
         Console.WriteLine("Best learning index= {0} | Best testing index = {1}", eo_SVR.BestLearningScore, eo_SVR.BestTestingScore);
-
+        
+        foreach(double value in eo_SVR.BestSolution)
+        {
+            Console.WriteLine("Param = {0}", value);
+        }
     }
 
 

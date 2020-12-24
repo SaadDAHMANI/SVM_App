@@ -128,7 +128,14 @@ public class EOSVR
             // Compute statistical params
      }    
 
-        public double BestScore= double.NaN; 
+        private double _BestScore; 
+        public double BestScore
+        {get {return _BestScore;}} 
+        
+        private double[] _BestSolution;
+        public double[] BestSolution
+        {get {return _BestSolution;}}
+        
         EvolutionaryAlgoBase Optimizer;
 
        private SequentialMinimalOptimizationRegression teacherSMOR ;
@@ -154,7 +161,7 @@ public class EOSVR
          int N=25;
          int kmax =30;
 
-         // Space dimension :
+         // Space dimension :q<
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
@@ -168,8 +175,8 @@ public class EOSVR
 
         Optimizer.LuanchComputation();        
    
-        BestScore=Optimizer.BestScore;    
-           
+        _BestScore=Optimizer.BestScore;    
+        _BestSolution=Optimizer.BestSolution;   
         }
 
 
