@@ -572,7 +572,7 @@ namespace SupportVectorRegression
             return result;
         }
 
- private static bool CheckDataSeries(double[] O_Serie, double[] P_Serie)
+        private static bool CheckDataSeries(double[] O_Serie, double[] P_Serie)
         {
             bool result = true ;
             if (object.Equals(O_Serie, null) || O_Serie.Length<1) { return false ; }
