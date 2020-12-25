@@ -49,8 +49,9 @@ namespace SVR_App2
              fileName_TestingOut="CTest_2.csv";
              fileName_DST="DST.csv";
 
-             LoadData();
+             //LoadData();
 
+            LoadDataDST();
              //EstimateSigmaAndComplexity();
 
             // Try SVR :
@@ -142,12 +143,12 @@ namespace SVR_App2
         }
 
          CsvFileIO reader1 =new CsvFileIO(file1);
-         var ds = reader1.Read_DST(file1);
+         var ds = reader1.Read_DST();
             
          if (Equals(ds,null)){Console.WriteLine("No data set .."); return;}
          if (Equals(ds.Data, null)){Console.WriteLine("No data ..");return;}
          
-         Console.WriteLine("There is {0} records in {1}");   
+         Console.WriteLine("There is {0} records in {1}", ds.Count, ds.Name);   
       }
 
 
