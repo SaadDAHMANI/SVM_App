@@ -34,7 +34,9 @@ namespace SVR_App2
          static double[][] LearningIn;
          static double[] LearningOut;
          static double[][] TestingIn;
-         static double[] TestingOut;   
+         static double[] TestingOut; 
+
+         static string fileName_DST;  
 
         static void Main(string[] args)
         {
@@ -45,12 +47,14 @@ namespace SVR_App2
              fileName_LearningOut="CLearn_2.csv";
              fileName_TestingIn="QTest_2.csv";
              fileName_TestingOut="CTest_2.csv";
+             fileName_DST="DST.csv";
+
              LoadData();
 
-             EstimateSigmaAndComplexity();
+             //EstimateSigmaAndComplexity();
 
             // Try SVR :
-            Test_EOSVR();   
+           // Test_EOSVR();   
             
 
         }
@@ -125,6 +129,28 @@ namespace SVR_App2
         }
 
 
+        static void LoadDataDST()
+    {
+        string fileRoot =string.Format("{0}\\DataSource",System.IO.Directory.GetCurrentDirectory());
+
+        string file1 = string.Format("{0}\\{1}",fileRoot, fileName_DST);
+       
+        if (System.IO.File.Exists(file1)==false)
+        {
+            Console.WriteLine("No file [{0}] found ...", file1);
+            return;
+        }
+
+         CsvFileIO reader1 =new CsvFileIO(file1);
+         var ds = reader1.Read_DST(file1);
+            
+         if (Equals(ds,null)){Console.WriteLine("No data set .."); return;}
+         if (Equals(ds.Data, null)){Console.WriteLine("No data ..");return;}
+         
+         Console.WriteLine("There is {0} records in {1}");   
+      }
+
+
 
     static void LoadData()
     {
@@ -186,6 +212,7 @@ namespace SVR_App2
          TestingOut = ds4.GetArray1D();   
          Console.WriteLine("There is {0} records in TESTING outputs.", TestingOut.Length);   
       }
+
 
     static void Test_EOSVR()
     {
