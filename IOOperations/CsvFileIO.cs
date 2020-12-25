@@ -657,12 +657,7 @@ namespace IOOperations
 
 			return ds1;
 		}
-		
-    
-
-
-
-
+	
 		public DataSerie2D Read_DS2()
            {
                DataSerie2D ds2= null ;
@@ -819,11 +814,11 @@ namespace IOOperations
 									
 								ds.Add(titles[0], listValues);
 
-								}
 							}
 						}
-										}					
-							}
+					}
+				}					
+			}
 			catch (Exception ex)
 			{
 				throw ex;
@@ -831,7 +826,6 @@ namespace IOOperations
 
 			return ds;
 		}
-
 
 		public List<DataSerie1D> Read_DS1List()
            {
