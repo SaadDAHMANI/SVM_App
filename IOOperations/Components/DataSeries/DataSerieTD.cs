@@ -142,10 +142,29 @@ namespace IOOperations
 
 		public override string ToString()
 		{
-			return mName;
+			StringBuilder strb = new StringBuilder();
+			strb.AppendLine(Name);
+			strb.AppendLine(Description);
+			strb.Append(Title).Append("; ");
+			foreach (string titl in Titles)
+			{ strb.Append(titl).Append("; "); }
+			
+			strb.AppendLine();
+
+			foreach (DataItemTD itm in Data)
+            {
+				strb.Append(itm.Title).Append("; ");
+				foreach (double value in itm.List)
+				{ strb.Append(value).Append("; "); }
+
+				strb.AppendLine();
+            }
+
+			return strb.ToString();
 		}
 
-        public DataSerie1D ConvertToDS1()
+
+		public DataSerie1D ConvertToDS1()
         {
             if (object.Equals (mData, null)) { return null;}
             DataSerie1D ds1 = new DataSerie1D();
