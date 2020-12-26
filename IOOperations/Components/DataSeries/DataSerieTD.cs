@@ -68,25 +68,17 @@ namespace IOOperations
 			}
 		}
 
-		public int Count
-		{
-			get
-			{
+		public int GetRowsCount()
+		{			
 				if (Equals(mData,null)) { return 0; }
-				else { return mData.Count; }
-
-			}
+				else { return mData.Count; }			
 		}
 
-		public int CountInItem
+		public int GetColumnsCount()
 		{			
-		get
-			{
-				if (Equals(mData, null)) { return 0; }
+					if (Equals(mData, null)) { return 0; }
 				else if (mData.Count <1) { return 0; }
-				else { return mData[0].List.Count();}
-
-			}
+				else { return mData[0].List.Count();}		
 		}
 
 		List<string> mTitles;

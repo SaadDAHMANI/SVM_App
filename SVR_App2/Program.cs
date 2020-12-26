@@ -252,11 +252,6 @@ namespace SVR_App2
     }
 
 
-    static void LuanchGA()
-    {
-      
-    }
-
 
     }
 }
