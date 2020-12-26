@@ -163,7 +163,6 @@ namespace IOOperations
 			return strb.ToString();
 		}
 
-
 		public DataSerie1D ConvertToDS1()
         {
             if (object.Equals (mData, null)) { return null;}
@@ -196,6 +195,29 @@ namespace IOOperations
             return result;
         }
 
+		public double[] GetColumn(int index)
+        {						
+			if (index==-1)
+			{ return null;}
+			
+			int colCount = GetColumnsCount();
+			int rowCount = GetRowsCount();
+
+			if (colCount < 1) { return null;}
+			if (rowCount < 1) { return null; }
+
+			double[] result = new double[rowCount];
+
+			if ( index < colCount && index >=0 )
+            {
+			
+				for (int i=0; i < rowCount;i++)
+                {
+					result[i] = this.Data[i].List[index];
+                }
+            }
+			return result; 
+        }
         public static double[][] Convert(DataSerieTD ds)
         {
             if (Equals(ds, null)) { return null; }

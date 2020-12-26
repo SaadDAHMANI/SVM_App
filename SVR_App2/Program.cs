@@ -148,11 +148,17 @@ namespace SVR_App2
          if (Equals(ds,null)){Console.WriteLine("No data set .."); return;}
          if (Equals(ds.Data, null)){Console.WriteLine("No data ..");return;}
 
-           Console.WriteLine(ds.ToString());
-            
-        
-         Console.WriteLine("There is {0} records in : {1}", ds.GetRowsCount(), ds.Name);   
+         Console.WriteLine(ds.ToString());
+
+         var x = ds.GetColumn(2);
+           
+            foreach (double itm in x)
+            { Console.WriteLine(itm); }
+
+
+          Console.WriteLine("There is {0} records in : {1}", ds.GetRowsCount(), ds.Name);   
       }
+
 
 
 
