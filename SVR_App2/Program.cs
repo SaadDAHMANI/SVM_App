@@ -36,7 +36,8 @@ namespace SVR_App2
          static double[][] TestingIn;
          static double[] TestingOut; 
 
-         static string fileName_DST;  
+         static string fileName_DST;
+         static DataSerieTD DataSet;
 
         static void Main(string[] args)
         {
@@ -51,7 +52,9 @@ namespace SVR_App2
 
              //LoadData();
 
-            LoadDataDST();
+              LoadDataDST2();
+
+              //if (!Equals(DataSet, null)) { Console.WriteLine(DataSet.ToString());}  
              //EstimateSigmaAndComplexity();
 
             // Try SVR :
@@ -59,7 +62,81 @@ namespace SVR_App2
             
 
         }
-        
+
+
+        static void LoadDataDST()
+        {
+            string fileRoot = string.Format("{0}\\DataSource", System.IO.Directory.GetCurrentDirectory());
+
+            string file1 = string.Format("{0}\\{1}", fileRoot, fileName_DST);
+
+            if (System.IO.File.Exists(file1) == false)
+            {
+                Console.WriteLine("No file [{0}] found ...", file1);
+                return;
+            }
+
+            CsvFileIO reader1 = new CsvFileIO(file1);
+            DataSet = reader1.Read_DST();
+
+            if (Equals(DataSet, null)) { Console.WriteLine("No data set .."); return; }
+            if (Equals(DataSet.Data, null)) { Console.WriteLine("No data .."); return; }
+
+            Console.WriteLine(DataSet.ToString());
+
+            var x = DataSet.GetColumn(2);
+
+            foreach (double itm in x)
+            { Console.WriteLine(itm); }
+
+
+            Console.WriteLine("There is {0} records in : {1}", DataSet.GetRowsCount(), DataSet.Name);
+        }
+
+        static void LoadDataDST2()
+        {
+            //string fileRoot = string.Format("{0}\\DataSource", System.IO.Directory.GetCurrentDirectory());
+
+
+            string file1 = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
+
+            if (System.IO.File.Exists(file1) == false)
+            {
+                Console.WriteLine("No file [{0}] found ...", file1);
+                return;
+            }
+
+            CsvFileIO reader1 = new CsvFileIO(file1);
+            DataSet = reader1.Read_DST(false, false,true,false);
+
+            if (Equals(DataSet, null)) { Console.WriteLine("No data set .."); return; }
+            if (Equals(DataSet.Data, null)) { Console.WriteLine("No data .."); return; }
+
+            //Console.WriteLine(DataSet.ToString());
+
+            var x = DataSet.GetColumns(0,1);
+
+            if (Equals(x, null)) { return; }
+          
+            foreach(double[] col in x)
+            {
+                Console.WriteLine("Column : ");
+
+                foreach (double value in col)
+                {
+                    Console.Write("{0}, ",value);
+                }                
+            }
+            
+
+            Console.WriteLine("There is {0} records in : {1}", DataSet.GetRowsCount(), DataSet.Name);
+        }
+
+
+
+
+        #region Old_Voids
+
         static void EstimateSigmaAndComplexity()
         {
             DoubleRange range; // valid range will be returned as an out parameter
@@ -129,40 +206,7 @@ namespace SVR_App2
 
         }
 
-
-        static void LoadDataDST()
-    {
-        string fileRoot =string.Format("{0}\\DataSource",System.IO.Directory.GetCurrentDirectory());
-
-        string file1 = string.Format("{0}\\{1}",fileRoot, fileName_DST);
-       
-        if (System.IO.File.Exists(file1)==false)
-        {
-            Console.WriteLine("No file [{0}] found ...", file1);
-            return;
-        }
-
-         CsvFileIO reader1 =new CsvFileIO(file1);
-         var ds = reader1.Read_DST();
-            
-         if (Equals(ds,null)){Console.WriteLine("No data set .."); return;}
-         if (Equals(ds.Data, null)){Console.WriteLine("No data ..");return;}
-
-         Console.WriteLine(ds.ToString());
-
-         var x = ds.GetColumn(2);
-           
-            foreach (double itm in x)
-            { Console.WriteLine(itm); }
-
-
-          Console.WriteLine("There is {0} records in : {1}", ds.GetRowsCount(), ds.Name);   
-      }
-
-
-
-
-    static void LoadData()
+        static void LoadData()
     {
         string fileRoot =string.Format("{0}\\DataSource",System.IO.Directory.GetCurrentDirectory());
 
@@ -223,8 +267,7 @@ namespace SVR_App2
          Console.WriteLine("There is {0} records in TESTING outputs.", TestingOut.Length);   
       }
 
-
-    static void Test_EOSVR()
+        static void Test_EOSVR()
     {
         // initilize svr :
        EOSVR eo_SVR = new EOSVR(LearningIn, LearningOut, TestingIn, TestingOut);
@@ -260,7 +303,8 @@ namespace SVR_App2
         }
     }
 
+        #endregion
 
 
     }
-}
+}        

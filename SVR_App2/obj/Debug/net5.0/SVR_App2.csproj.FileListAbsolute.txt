@@ -55,11 +55,16 @@ F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\SVR_App2.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\ref\SVR_App2.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\SVR_App2.pdb
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Genetic.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.MachineLearning.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.MachineLearning.GPL.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Math.Core.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Math.dll
 F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Statistics.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.dll
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.pdb
+F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.pdb
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.csprojAssemblyReference.cache
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.GeneratedMSBuildEditorConfig.editorconfig
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.AssemblyInfoInputs.cache
@@ -70,8 +75,3 @@ F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.dll
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\ref\SVR_App2.dll
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.pdb
 F:\VS19_Apps\SVM_App\SVR_App2\obj\Debug\net5.0\SVR_App2.genruntimeconfig.cache
-F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.dll
-F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\IOOperations.pdb
-F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\Accord.Genetic.dll
-F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.dll
-F:\VS19_Apps\SVM_App\SVR_App2\bin\Debug\net5.0\MonoObjectiveEOALib.pdb

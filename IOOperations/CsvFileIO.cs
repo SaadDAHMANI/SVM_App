@@ -816,7 +816,8 @@ namespace IOOperations
 
 							}
 						}
-					}
+                        fs.Close();
+                    }
 				}					
 			}
 			catch (Exception ex)
@@ -827,7 +828,114 @@ namespace IOOperations
 			return ds;
 		}
 
-		public List<DataSerie1D> Read_DS1List()
+        public DataSerieTD Read_DST(bool thereIsName, bool thereIsDescription, bool thereIsHeader, bool thereIsKeyColomn)
+        {
+            if (thereIsName && thereIsDescription && thereIsHeader && thereIsKeyColomn)
+            {
+                return Read_DST();
+            }
+
+            DataSerieTD ds = null;
+            try
+            {
+                if (File.Exists(this.mFileName))
+                {
+                    ds = new DataSerieTD();
+
+                    using (FileStream fs = File.Open(mFileName, FileMode.Open))
+                    {
+                        using (StreamReader sReader = new StreamReader(fs))
+                        {
+                            if(thereIsName)
+                            {
+                                ds.Name = sReader.ReadLine();
+                            }else { ds.Name = "n/n"; }
+                                                    
+
+                            if(thereIsDescription)
+                            {
+                             ds.Description = sReader.ReadLine();
+                            }
+                            else { ds.Description = "n/n"; }
+
+                            string title;
+                            string[] titles;
+
+                            if (thereIsHeader)
+                            {
+                                title = sReader.ReadLine();
+                                titles = title.Split(';');
+
+                                if (titles.Count() > 0)
+                                {
+                                    ds.Title = titles[0];
+
+                                    ds.Titles = new List<string>();
+
+                                    for (int i = 1; i < titles.Count(); i++)
+                                    {
+                                        ds.Titles.Add(titles[i]);
+                                    }
+                                }
+                            }
+                                                      
+                           if (thereIsKeyColomn)
+                            { 
+                            while (sReader.EndOfStream == false)
+                            {
+                                title = sReader.ReadLine();
+                                titles = title.Split(';');
+
+                                int countinItem = titles.Count();
+
+                                double[] listValues = new double[(countinItem - 1)];
+
+                                for (int j = 1; j < countinItem; j++)
+                                {
+                                    listValues[(j - 1)] = double.Parse(titles[j]);
+                                }
+
+                                ds.Add(titles[0], listValues);
+                            }
+                            }
+                            else 
+                            {
+                                int i = 0;
+
+                                while (sReader.EndOfStream == false)
+                                {
+                                    i += 1;
+
+                                    title = sReader.ReadLine();
+                                    titles = title.Split(';');
+
+                                    int countinItem = titles.Count();
+
+                                    double[] listValues = new double[countinItem];
+
+                                    for (int j = 0; j < countinItem; j++)
+                                    {
+                                        listValues[j] = double.Parse(titles[j]);
+                                    }
+
+                                    ds.Add(i.ToString (), listValues);
+                                }
+
+                            }
+                            fs.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ds;
+        }
+
+        public List<DataSerie1D> Read_DS1List()
            {
                List<DataSerie1D> ds1List = null;
 

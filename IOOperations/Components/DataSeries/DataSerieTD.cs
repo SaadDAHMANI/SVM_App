@@ -197,10 +197,15 @@ namespace IOOperations
 
 		public double[] GetColumn(int index)
         {						
-			if (index==-1)
-			{ return null;}
-			
+			if (index <0)
+			{return null;}
+
+			if (Equals(Data, null)){ return null;}
+						
 			int colCount = GetColumnsCount();
+			
+			if (index >= colCount) { throw new Exception(string.Format("The dataset columns count is < {0}", index));}
+
 			int rowCount = GetRowsCount();
 
 			if (colCount < 1) { return null;}
@@ -218,7 +223,44 @@ namespace IOOperations
             }
 			return result; 
         }
-        public static double[][] Convert(DataSerieTD ds)
+
+		public List<double[]> GetColumns(params int[] columns)
+		{
+			if (Equals(columns, null)) { return null; }
+			if (Equals(Data, null)) { return null; }
+
+			int colCount = GetColumnsCount();
+			if (colCount < 1) { return null; }
+
+			if (columns.Min() < 0 || columns.Max() >= colCount)
+			{ return null; }
+
+			int rowCount = GetRowsCount();
+
+			if (rowCount < 1) { return null; }
+
+			List<double[]> result = new List<double[]>();
+
+			double[] colmn;
+			int i;
+
+			foreach (int colIndex in columns)
+            {
+				colmn = new double[rowCount];
+				i = 0;
+
+				foreach(DataItemTD itm in Data)
+                {
+					colmn[i] = itm.List[colIndex];
+					i += 1;
+                }
+				result.Add(colmn);
+			}
+
+			return result;
+
+		}
+		public static double[][] Convert(DataSerieTD ds)
         {
             if (Equals(ds, null)) { return null; }
 
