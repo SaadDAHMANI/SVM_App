@@ -58,7 +58,7 @@ namespace SVR_App2
              //EstimateSigmaAndComplexity();
 
             // Try SVR :
-           // Test_EOSVR();   
+           Test_EOSVR();   
             
 
         }
@@ -114,7 +114,7 @@ namespace SVR_App2
 
             //Console.WriteLine(DataSet.ToString());
 
-            var x = DataSet.GetDataOfColumns(1,0);
+            var x = DataSet.GetDataOfColumns(2,1);
 
             if (Equals(x, null)) { return; }
           
