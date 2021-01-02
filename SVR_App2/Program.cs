@@ -114,18 +114,19 @@ namespace SVR_App2
 
             //Console.WriteLine(DataSet.ToString());
 
-            var x = DataSet.GetColumns(0,1);
+            var x = DataSet.GetDataOfColumns(1,0);
 
             if (Equals(x, null)) { return; }
           
             foreach(double[] col in x)
             {
-                Console.WriteLine("Column : ");
+                //Console.WriteLine("Column : ");
 
                 foreach (double value in col)
                 {
                     Console.Write("{0}, ",value);
-                }                
+                }
+                Console.WriteLine("");
             }
             
 

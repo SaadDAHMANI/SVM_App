@@ -260,6 +260,46 @@ namespace IOOperations
 			return result;
 
 		}
+
+
+		public double [][] GetDataOfColumns(params int[] columns)
+		{
+			if (Equals(columns, null)) { return null; }
+			if (Equals(Data, null)) { return null; }
+
+			int colCount = GetColumnsCount();
+			if (colCount < 1) { return null; }
+
+			if (columns.Min() < 0 || columns.Max() >= colCount)
+			{ return null; }
+
+			int rowCount = GetRowsCount();
+
+			if (rowCount < 1) { return null; }
+
+			double[][] result = new double[rowCount][];
+
+			double[] row;
+			int i = 0;
+
+			foreach (DataItemTD itm in Data)
+			 {
+				row = new double[columns.Count()];
+				
+				for (int j=0;j < columns.Count(); j++)
+                {
+					row[j] = itm.List[columns[j]];
+                }
+				result[i] = row;
+				i += 1;
+			 }
+
+			return result;
+
+		}
+
+
+
 		public static double[][] Convert(DataSerieTD ds)
         {
             if (Equals(ds, null)) { return null; }
