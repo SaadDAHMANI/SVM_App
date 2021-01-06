@@ -18,9 +18,18 @@ public DataFormater(DataSerieTD dataset )
 
 public DataSerieTD DataSet {get; set;}
 
-private int _TrainingCount; 
-public int TrainingCount
- {get {return _TrainingCount;} set {_TrainingCount=Math.Max(0, Math.Min(value, 100));}}
+private int _TrainingPourcentage; 
+public int TrainingPourcentage
+ {get {return _TrainingPourcentage;} set {_TrainingPourcentage=Math.Max(0, Math.Min(value, 100));}}
+
+public int TestingPourcentage
+{get {return 100-_TrainingPourcentage;}}
+
+
+
+
+
+
 
 
 
