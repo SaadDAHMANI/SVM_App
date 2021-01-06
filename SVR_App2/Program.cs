@@ -133,9 +133,6 @@ namespace SVR_App2
             Console.WriteLine("There is {0} records in : {1}", DataSet.GetRowsCount(), DataSet.Name);
         }
 
-
-
-
         #region Old_Voids
 
         static void EstimateSigmaAndComplexity()
