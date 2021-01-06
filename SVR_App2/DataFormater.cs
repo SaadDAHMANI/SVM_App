@@ -10,7 +10,12 @@ namespace SupportVectorRegression
 
 public class DataFormater
 {
+public DataFormater(DataSerieTD dataSet )
+{
+    DataSet=dataSet;
+}
 
+private DataSerieTD DataSet;  
 
 }
 }
