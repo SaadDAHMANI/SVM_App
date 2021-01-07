@@ -18,11 +18,11 @@ namespace SupportVectorRegression
 
         public DataSerieTD DataSet { get; set; }
 
-        private int _TrainingPourcentage;
-        public int TrainingPourcentage
+        private double _TrainingPourcentage;
+        public double TrainingPourcentage
         { get { return _TrainingPourcentage; } set { _TrainingPourcentage = Math.Max(0, Math.Min(value, 100)); } }
 
-        public int TestingPourcentage
+        public double TestingPourcentage
         { get { return 100 - _TrainingPourcentage; } }
 
         private double[][] _TrainingInput;
@@ -46,15 +46,15 @@ namespace SupportVectorRegression
 
         public void Format(int targetColumnIndex, params int[] modelInputColumns)
  {
-    if(_TrainingPourcentage<=0){ return;}
-    if(Equals(DataSet,null)){return;}
-    if(Equals(DataSet.Data, null)){return;}
+             if(_TrainingPourcentage<=0){ return;}
+            if(Equals(DataSet,null)){return;}
+            if(Equals(DataSet.Data, null)){return;}
 
          int colCount = DataSet.GetColumnsCount();
          int rowCount = DataSet.GetRowsCount();
          if (colCount < 1 || rowCount < 2) {return;}
 
-         int trainRowCount = (int) (MathF.Round(((TrainingPourcentage * rowCount) / 100),0));
+         int trainRowCount = Convert.ToInt32(((TrainingPourcentage * rowCount) / 100));
 
             double[] targetCol = DataSet.GetColumn(targetColumnIndex);
             double[][] dataCols = DataSet.GetDataOfColumns(modelInputColumns); 
