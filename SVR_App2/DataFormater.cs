@@ -25,6 +25,18 @@ public int TrainingPourcentage
 public int TestingPourcentage
 {get {return 100-_TrainingPourcentage;}}
 
+ public void Format(int targetColumnIndex)
+ {
+    if (targetColumnIndex<0){return;}
+    if(_TrainingPourcentage<=0){ return;}
+    if(Equals(DataSet,null)){return;}
+    if(Equals(DataSet.Data, null)){return;}
+
+  
+ }
+
+
+
 
 
 
