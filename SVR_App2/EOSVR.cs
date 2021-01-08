@@ -44,12 +44,17 @@ public class EOSVR
      private double[] _Computed_TestingOutputs;
      public double[] Computed_TestingOutputs{get {return _Computed_TestingOutputs;}}
 
-      private int _MaxIterations;
+     private int _MaxIterations;
      public int MaxIterations 
      { get {return _MaxIterations;}
        set {_MaxIterations=Math.Max(0, value);}
      }
-
+     
+     private int _PopulationSize;
+     public int PopulationSize 
+     { get {return _PopulationSize;}
+       set {_PopulationSize =Math.Max(2, value);}
+     }
 
    
 
@@ -168,10 +173,6 @@ public class EOSVR
          teacherSMOR.UseComplexityHeuristic= true;
          teacherSMOR.UseKernelEstimation=false;
         
-         // Optimization prams :            
-         int N=3;
-         int kmax =5;
-
          // Space dimension :q<
          int D=4;   
         
@@ -181,7 +182,7 @@ public class EOSVR
         intervals.Add(new Interval(0.0001, 0.1)); // Tolerance        
         intervals.Add(new Interval(0.0001, 0.1)); // Epsilon
 
-        Optimizer= new PSOGSA_Optimizer(N,D,intervals,kmax);
+        Optimizer= new PSOGSA_Optimizer(N,D,intervals,MaxIterations);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
 
         Optimizer.LuanchComputation();        
