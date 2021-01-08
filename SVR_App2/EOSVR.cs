@@ -56,10 +56,6 @@ public class EOSVR
        set {_PopulationSize =Math.Max(2, value);}
      }
 
-   
-
-
-
      public double[][] SupportVectorsWeights{
          get 
          {
@@ -182,7 +178,7 @@ public class EOSVR
         intervals.Add(new Interval(0.0001, 0.1)); // Tolerance        
         intervals.Add(new Interval(0.0001, 0.1)); // Epsilon
 
-        Optimizer= new PSOGSA_Optimizer(N,D,intervals,MaxIterations);
+        Optimizer= new PSOGSA_Optimizer(PopulationSize,D,intervals,MaxIterations);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
 
         Optimizer.LuanchComputation();        
