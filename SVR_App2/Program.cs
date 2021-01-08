@@ -40,22 +40,26 @@ namespace SVR_App2
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(0, 0, 1, 2);
+             df.Format(0, 0, 1);
             
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
 
+             // Luanch EOSVR with EOAlgo params.   
+             int n=5;
+             int kmax=5;
 
+             LaunchEOSVR(n,kmax);
 
 
         }
 
-        static void LaunchEOSVR()
+        static void LaunchEOSVR( int popSize, int iterMax)
         {
             if (Equals(DataSet, null) || Equals(df, null)){return;}
             EOSVR eo_svr = new EOSVR(df.TrainingInput, df.TrainingOutput, df.TestingInput, df.TestingOutput);
             
-            eo_svr.PopulationSize=5;
-            eo_svr.MaxIterations=5;
+            eo_svr.PopulationSize=popSize;
+            eo_svr.MaxIterations=iterMax;
 
             eo_svr.LearnEO();
 
