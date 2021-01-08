@@ -343,7 +343,9 @@ namespace SupportVectorRegression
         public static double Compute_CorrelationCoeff_R(double[] O_Serie, double[] P_Serie)
         {
             double rValue = double.NaN;
-            if (CheckDataSeries(O_Serie, P_Serie) == false) { return rValue ; }
+            if (CheckDataSeries(O_Serie, P_Serie)== false) { return rValue ; }
+           
+           
             try
             {
                 double sum1 = 0;

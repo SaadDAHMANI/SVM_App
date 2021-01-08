@@ -40,7 +40,7 @@ namespace SVR_App2
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(2,1);
+             df.Format(1,1);
 
              Console.WriteLine("LearnIn = {0}, LearnOut = {1}, TestIn = {2}, TestOut = {3}",df.TrainingInput.Length, df.TrainingOutput.Length, df.TestingInput.Length, df.TestingOutput.Length );
 
@@ -64,7 +64,7 @@ namespace SVR_App2
             eo_svr.PopulationSize=popSize;
             eo_svr.MaxIterations=iterMax;
 
-            eo_svr.LearnEO();
+            eo_svr.Learn();
 
             Console.WriteLine("Best score = {0}", eo_svr.BestScore);  
             Console.WriteLine("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);

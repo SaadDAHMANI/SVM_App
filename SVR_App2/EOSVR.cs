@@ -136,8 +136,13 @@ public class EOSVR
             // Compute results for learning and testing data
             _Computed_LearningOutputs =svm.Score(LearningInputs);
             _Computed_TestingOutputs=svm.Score(TestingInputs);
+                        
+            // Compute statistical results
 
-            // Compute statistical params
+           BestLearningScore  = Statistics.Compute_CorrelationCoeff_R(LearningOutputs,Computed_LearningOutputs);            
+           BestTestingScore= Statistics.Compute_CorrelationCoeff_R(TestingOutputs, Computed_TestingOutputs);
+           
+
      }    
 
         private double _BestScore; 
