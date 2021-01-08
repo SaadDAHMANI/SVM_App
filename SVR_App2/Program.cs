@@ -52,7 +52,10 @@ namespace SVR_App2
         static void LaunchEOSVR()
         {
             if (Equals(DataSet, null) || Equals(df, null)){return;}
+            EOSVR eo_svr = new EOSVR(df.TrainingInput, df.TrainingOutput, df.TestingInput, df.TestingOutput);
             
+            eo_svr.LearnEO();
+
 
         }
 
