@@ -54,9 +54,13 @@ namespace SVR_App2
             if (Equals(DataSet, null) || Equals(df, null)){return;}
             EOSVR eo_svr = new EOSVR(df.TrainingInput, df.TrainingOutput, df.TestingInput, df.TestingOutput);
             
+            eo_svr.PopulationSize=5;
+            eo_svr.MaxIterations=5;
+
             eo_svr.LearnEO();
 
-
+            Console.WriteLine("Best score = {0}",eo_svr.BestScore);  
+            Console.Write("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);
         }
 
         static void LoadDataDST()
