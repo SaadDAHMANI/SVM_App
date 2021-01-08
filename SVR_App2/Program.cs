@@ -33,14 +33,26 @@ namespace SVR_App2
         static void Main(string[] args)
         {
              Console.WriteLine("Hello SVR!");
-             string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_ExempleSinX.csv";    //Console.ReadLine();
-   
-             LoadData(file);
+
+            //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Ex.csv";
+           //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";
+
+             //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_ExempleSinX.csv";
+            
+            //QC_Sidi_Aissa SSL
+            //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\QC_Sidi_Aissa.csv";
+           
+           //Beni-Bahdel_Dame_3Q
+              string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\Beni-Bahdel_Dame_3Q.csv";
+             
+
+
+            LoadData(file);
 
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(1,1);
+             df.Format(3,0,1,2);
 
              Console.WriteLine("LearnIn = {0}, LearnOut = {1}, TestIn = {2}, TestOut = {3}",df.TrainingInput.Length, df.TrainingOutput.Length, df.TestingInput.Length, df.TestingOutput.Length );
 
@@ -48,8 +60,8 @@ namespace SVR_App2
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
 
              // Luanch EOSVR with EOAlgo params.   
-             int n=5;
-             int kmax=5;
+             int n=4;
+             int kmax=1;
 
              LaunchEOSVR(n,kmax);
 
@@ -64,7 +76,12 @@ namespace SVR_App2
             eo_svr.PopulationSize=popSize;
             eo_svr.MaxIterations=iterMax;
 
-            eo_svr.Learn();
+            eo_svr.Sigma_Kernel=1.2;
+            eo_svr.Param_Complexity = 1;
+            eo_svr.Param_Epsilon = 0.001;
+            eo_svr.Param_Tolerance = 0.001;
+
+            eo_svr.LearnEO();
 
             Console.WriteLine("Best score = {0}", eo_svr.BestScore);  
             Console.WriteLine("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);

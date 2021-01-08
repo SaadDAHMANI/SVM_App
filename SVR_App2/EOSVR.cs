@@ -135,12 +135,28 @@ public class EOSVR
 
             // Compute results for learning and testing data
             _Computed_LearningOutputs =svm.Score(LearningInputs);
-            _Computed_TestingOutputs=svm.Score(TestingInputs);
-                        
-            // Compute statistical results
 
-           BestLearningScore  = Statistics.Compute_CorrelationCoeff_R(LearningOutputs,Computed_LearningOutputs);            
-           BestTestingScore= Statistics.Compute_CorrelationCoeff_R(TestingOutputs, Computed_TestingOutputs);
+            //foreach (double[] itm in TestingInputs)
+            //{
+            //    foreach (double value in itm)
+            //    {
+            //        Console.Write(value);
+            //    }
+            //    Console.WriteLine("");
+            //}
+
+            _Computed_TestingOutputs=svm.Score(TestingInputs);
+            
+            foreach (double value in _Computed_TestingOutputs)
+            {
+                Console.WriteLine(value);
+            }
+
+            // Compute statistical results
+            
+
+           BestLearningScore  = Statistics.Compute_CorrelationCoeff_R(LearningOutputs, _Computed_LearningOutputs);            
+           BestTestingScore= Statistics.Compute_CorrelationCoeff_R(TestingOutputs, _Computed_TestingOutputs);
            
 
      }    
@@ -174,14 +190,14 @@ public class EOSVR
          teacherSMOR.UseComplexityHeuristic= true;
          teacherSMOR.UseKernelEstimation=false;
         
-         // Space dimension :q<
+         // Space dimension :must 4.
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
-        intervals.Add(new Interval(0.1, 6.70)); //Sigma of Gaussian
-        intervals.Add(new Interval(0.1, 1.5)); // Complexity
-        intervals.Add(new Interval(0.001, 0.1)); // Tolerance        
-        intervals.Add(new Interval(0.001, 0.1)); // Epsilon
+        intervals.Add(new Interval(0.1, 20)); //Sigma of Gaussian
+        intervals.Add(new Interval(0.5, 20)); // Complexity
+        intervals.Add(new Interval(0.001, 0.01)); // Tolerance        
+        intervals.Add(new Interval(0.001, 0.01)); // Epsilon
 
         Optimizer= new PSOGSA_Optimizer(PopulationSize,D,intervals,MaxIterations);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
@@ -225,8 +241,8 @@ public double BestTestingScore=double.MinValue;
             _Computed_TestingOutputs=svm.Score(TestingInputs);
 
             // Compute statistical 
-            LearningIndex = Statistics.Compute_CorrelationCoeff_R(LearningOutputs,_Computed_LearningOutputs);            
-            TestingIndex =Statistics.Compute_CorrelationCoeff_R(TestingOutputs, _Computed_TestingOutputs);
+            LearningIndex = Statistics.Compute_Nash_Sutcliffe_Efficiency(LearningOutputs,_Computed_LearningOutputs);            
+            TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(TestingOutputs, _Computed_TestingOutputs);
             
             Console.WriteLine("indexL= {0} | indexT= {1}", LearningIndex, TestingIndex);
             if (BestLearningScore<LearningIndex && BestTestingScore < TestingIndex)
@@ -235,7 +251,7 @@ public double BestTestingScore=double.MinValue;
              BestTestingScore=TestingIndex;
              }
             //set the fitness value
-            fitnessValue=1/(LearningIndex+TestingIndex);   
+            fitnessValue=Math.Pow((2-LearningIndex+TestingIndex),2);   
  
      }
 }
