@@ -49,7 +49,7 @@ namespace SupportVectorRegression
              if(_TrainingPourcentage<=0){ return;}
             if(Equals(DataSet,null)){return;}
             if(Equals(DataSet.Data, null)){return;}
-
+            
          int colCount = DataSet.GetColumnsCount();
          int rowCount = DataSet.GetRowsCount();
          if (colCount < 1 || rowCount < 2) {return;}
