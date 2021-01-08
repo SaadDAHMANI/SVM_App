@@ -35,11 +35,26 @@ namespace SVR_App2
              Console.WriteLine("Hello SVR!");
              string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
    
-              LoadData(file);
+             LoadData(file);
+
+             df = new DataFormater(DataSet);
+             df.TrainingPourcentage = 70;
+
+             df.Format(0, 0, 1, 2);
+            
+            if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
+
+
 
 
         }
 
+        static void LaunchEOSVR()
+        {
+            if (Equals(DataSet, null) || Equals(df, null)){return;}
+            
+
+        }
 
         static void LoadDataDST()
         {
@@ -92,29 +107,6 @@ namespace SVR_App2
             Console.WriteLine("There is {0} records in : {1}", DataSet.GetRowsCount(), DataSet.Name);
 
             //Console.WriteLine(DataSet.ToString());
-
-            df = new DataFormater(DataSet);
-            df.TrainingPourcentage = 70;
-
-            df.Format(0, 0, 1, 2);
-            
-            if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
-
-            Console.WriteLine("Training : ");
-
-            foreach (double value in df.TrainingOutput)
-            {
-                Console.Write("{0}, ", value);
-            }
-
-            
-            Console.WriteLine("Testing : ");
-
-            foreach (double value in df.TestingOutput)
-            {
-                Console.Write("{0}, ", value);
-            }
-
 
         }
 
