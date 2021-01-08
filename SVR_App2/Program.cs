@@ -29,12 +29,13 @@ namespace SVR_App2
         
          static string fileName_DST;
          static DataSerieTD DataSet;
-
+         static DataFormater df;   
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello SVR!");
-
-              LoadDataDST2();
+             Console.WriteLine("Hello SVR!");
+             string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
+   
+              LoadData(file);
 
 
         }
@@ -69,20 +70,20 @@ namespace SVR_App2
             Console.WriteLine("There is {0} records in : {1}", DataSet.GetRowsCount(), DataSet.Name);
         }
 
-        static void LoadDataDST2()
+        static void LoadData(string file)
         {
             //string fileRoot = string.Format("{0}\\DataSource", System.IO.Directory.GetCurrentDirectory());
 
 
-            string file1 = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
+            //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
 
-            if (System.IO.File.Exists(file1) == false)
+            if (System.IO.File.Exists(file) == false)
             {
-                Console.WriteLine("No file [{0}] found ...", file1);
+                Console.WriteLine("No file [{0}] found ...", file);
                 return;
             }
 
-            CsvFileIO reader1 = new CsvFileIO(file1);
+            CsvFileIO reader1 = new CsvFileIO(file);
             DataSet = reader1.Read_DST(false, false,true,false);
 
             if (Equals(DataSet, null)) { Console.WriteLine("No data set .."); return; }
@@ -92,12 +93,12 @@ namespace SVR_App2
 
             //Console.WriteLine(DataSet.ToString());
 
-            DataFormater df = new DataFormater(DataSet);
-            df.TrainingPourcentage = 71;
+            df = new DataFormater(DataSet);
+            df.TrainingPourcentage = 70;
+
             df.Format(0, 0, 1, 2);
             
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
-
 
             Console.WriteLine("Training : ");
 
