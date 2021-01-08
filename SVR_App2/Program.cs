@@ -33,14 +33,14 @@ namespace SVR_App2
         static void Main(string[] args)
         {
              Console.WriteLine("Hello SVR!");
-             string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";    //Console.ReadLine();
+             string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_ExempleSinX.csv";    //Console.ReadLine();
    
              LoadData(file);
 
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(0, 0, 1);
+             df.Format(0, 1);
             
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
 
