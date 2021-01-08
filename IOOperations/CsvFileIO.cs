@@ -866,13 +866,13 @@ namespace IOOperations
                                 title = sReader.ReadLine();
                                 titles = title.Split(';');
 
-                                if (titles.Count() > 0)
+                                if (titles.Length > 0)
                                 {
                                     ds.Title = titles[0];
 
                                     ds.Titles = new List<string>();
 
-                                    for (int i = 1; i < titles.Count(); i++)
+                                    for (int i = 1; i < titles.Length; i++)
                                     {
                                         ds.Titles.Add(titles[i]);
                                     }
@@ -886,7 +886,7 @@ namespace IOOperations
                                 title = sReader.ReadLine();
                                 titles = title.Split(';');
 
-                                int countinItem = titles.Count();
+                                int countinItem = titles.Length;
 
                                 double[] listValues = new double[(countinItem - 1)];
 
@@ -909,7 +909,7 @@ namespace IOOperations
                                     title = sReader.ReadLine();
                                     titles = title.Split(';');
 
-                                    int countinItem = titles.Count();
+                                    int countinItem = titles.Length;
 
                                     double[] listValues = new double[countinItem];
 

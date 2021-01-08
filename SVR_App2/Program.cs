@@ -40,8 +40,11 @@ namespace SVR_App2
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(0, 1);
-            
+             df.Format(2,1);
+
+             Console.WriteLine("LearnIn = {0}, LearnOut = {1}, TestIn = {2}, TestOut = {3}",df.TrainingInput.Length, df.TrainingOutput.Length, df.TestingInput.Length, df.TestingOutput.Length );
+
+                        
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
 
              // Luanch EOSVR with EOAlgo params.   
@@ -63,8 +66,8 @@ namespace SVR_App2
 
             eo_svr.LearnEO();
 
-            Console.WriteLine("Best score = {0}",eo_svr.BestScore);  
-            Console.Write("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);
+            Console.WriteLine("Best score = {0}", eo_svr.BestScore);  
+            Console.WriteLine("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);
         }
 
         static void LoadDataDST()
