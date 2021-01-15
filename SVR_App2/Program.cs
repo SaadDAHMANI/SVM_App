@@ -34,25 +34,26 @@ namespace SVR_App2
         {
              Console.WriteLine("Hello SVR!");
 
-            //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Ex.csv";
-           //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";
+             //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Ex.csv";
+             //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_Exemple.csv";
 
              //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\DataSet_ExempleSinX.csv";
             
-            //QC_Sidi_Aissa SSL
-            //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\QC_Sidi_Aissa.csv";
+             //QC_Sidi_Aissa SSL :
+             //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\QC_Sidi_Aissa.csv";
            
-           //Beni-Bahdel_Dame_3Q
-              string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\Beni-Bahdel_Dame_3Q.csv";
-             
+             //Beni-Bahdel_Dame_3Q :
+             //string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\Beni-Bahdel_Dame_3Q.csv";
 
-
-            LoadData(file);
+             //Station_Ain_El_Assel_Dataset_Pf(Q) :
+             string file = @"C:\Users\SD\Documents\Dataset_ANN_SVR\Station_Ain_El_Assel_Dataset_Pf(Q).csv";
+                        
+             LoadData(file);
 
              df = new DataFormater(DataSet);
              df.TrainingPourcentage = 70;
 
-             df.Format(3,0,1,2);
+             df.Format(6,0,1,2,3,4,5);
 
              Console.WriteLine("LearnIn = {0}, LearnOut = {1}, TestIn = {2}, TestOut = {3}",df.TrainingInput.Length, df.TrainingOutput.Length, df.TestingInput.Length, df.TestingOutput.Length );
 
@@ -60,7 +61,7 @@ namespace SVR_App2
             if (!Equals(df.TrainingInput, null)) { Console.WriteLine("Training = {0}", df.TrainingInput.Length); }
 
              // Luanch EOSVR with EOAlgo params.   
-             int n=4;
+             int n=5;
              int kmax=1;
 
              LaunchEOSVR(n,kmax);
@@ -76,11 +77,15 @@ namespace SVR_App2
             eo_svr.PopulationSize=popSize;
             eo_svr.MaxIterations=iterMax;
 
-            eo_svr.Sigma_Kernel=1.2;
-            eo_svr.Param_Complexity = 1;
+            eo_svr.Sigma_Kernel=1.1;
+            eo_svr.Param_Complexity = 25;
             eo_svr.Param_Epsilon = 0.001;
             eo_svr.Param_Tolerance = 0.001;
 
+            //Console.WriteLine("---------> SVR : ");
+            //eo_svr.Learn();            
+            
+            Console.WriteLine("---------> EO-SVR : ");
             eo_svr.LearnEO();
 
             Console.WriteLine("Best score = {0}", eo_svr.BestScore);  

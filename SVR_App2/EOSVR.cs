@@ -147,15 +147,15 @@ public class EOSVR
 
             _Computed_TestingOutputs=svm.Score(TestingInputs);
             
-            foreach (double value in _Computed_TestingOutputs)
-            {
-                Console.WriteLine(value);
-            }
+            // foreach (double value in _Computed_TestingOutputs)
+            //{
+            //   Console.WriteLine(value);
+            //}
 
             // Compute statistical results
             
 
-           BestLearningScore  = Statistics.Compute_CorrelationCoeff_R(LearningOutputs, _Computed_LearningOutputs);            
+           BestLearningScore  = Statistics.Compute_DeterminationCoeff_R2(LearningOutputs, _Computed_LearningOutputs);            
            BestTestingScore= Statistics.Compute_CorrelationCoeff_R(TestingOutputs, _Computed_TestingOutputs);
            
 
@@ -194,10 +194,10 @@ public class EOSVR
          int D=4;   
         
         List<Interval> intervals = new List<Interval>();
-        intervals.Add(new Interval(0.1, 20)); //Sigma of Gaussian
-        intervals.Add(new Interval(0.5, 20)); // Complexity
-        intervals.Add(new Interval(0.001, 0.01)); // Tolerance        
-        intervals.Add(new Interval(0.001, 0.01)); // Epsilon
+        intervals.Add(new Interval(0.9, 1.2)); //Sigma of Gaussian
+        intervals.Add(new Interval(25, 40)); // Complexity
+        intervals.Add(new Interval(0.001, 0.001)); // Tolerance        
+        intervals.Add(new Interval(0.001, 0.001)); // Epsilon
 
         Optimizer= new PSOGSA_Optimizer(PopulationSize,D,intervals,MaxIterations);
         Optimizer.ObjectiveFunction += Optimizer_ObjectiveFunction;  
@@ -241,8 +241,8 @@ public double BestTestingScore=double.MinValue;
             _Computed_TestingOutputs=svm.Score(TestingInputs);
 
             // Compute statistical 
-            LearningIndex = Statistics.Compute_Nash_Sutcliffe_Efficiency(LearningOutputs,_Computed_LearningOutputs);            
-            TestingIndex =Statistics.Compute_Nash_Sutcliffe_Efficiency(TestingOutputs, _Computed_TestingOutputs);
+            LearningIndex = Statistics.Compute_DeterminationCoeff_R2(LearningOutputs,_Computed_LearningOutputs);            
+            TestingIndex =Statistics.Compute_DeterminationCoeff_R2(TestingOutputs, _Computed_TestingOutputs);
             
             Console.WriteLine("indexL= {0} | indexT= {1}", LearningIndex, TestingIndex);
             if (BestLearningScore<LearningIndex && BestTestingScore < TestingIndex)
