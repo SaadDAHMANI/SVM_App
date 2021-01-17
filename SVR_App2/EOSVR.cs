@@ -156,7 +156,7 @@ public class EOSVR
             
 
            BestLearningScore  = Statistics.Compute_DeterminationCoeff_R2(LearningOutputs, _Computed_LearningOutputs);            
-           BestTestingScore= Statistics.Compute_CorrelationCoeff_R(TestingOutputs, _Computed_TestingOutputs);
+           BestTestingScore= Statistics.Compute_DeterminationCoeff_R2(TestingOutputs, _Computed_TestingOutputs);
            
 
      }    

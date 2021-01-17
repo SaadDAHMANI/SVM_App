@@ -78,15 +78,15 @@ namespace SVR_App2
             eo_svr.MaxIterations=iterMax;
 
             eo_svr.Sigma_Kernel=1.1;
-            eo_svr.Param_Complexity = 25;
+            eo_svr.Param_Complexity = 100;
             eo_svr.Param_Epsilon = 0.001;
             eo_svr.Param_Tolerance = 0.001;
 
-            //Console.WriteLine("---------> SVR : ");
-            //eo_svr.Learn();            
+            Console.WriteLine("---------> SVR : ");
+            eo_svr.Learn();            
             
-            Console.WriteLine("---------> EO-SVR : ");
-            eo_svr.LearnEO();
+            //Console.WriteLine("---------> EO-SVR : ");
+            //eo_svr.LearnEO();
 
             Console.WriteLine("Best score = {0}", eo_svr.BestScore);  
             Console.WriteLine("Best learning index = {0} ; Best testing index = {1}", eo_svr.BestLearningScore, eo_svr.BestTestingScore);
